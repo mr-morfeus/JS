@@ -27,17 +27,23 @@ function findProductById(id){
 
 console.log(poid);*/
 
+let polnaya_stoim = 0;
+
 function getTotalPrice(){
 
     const arlenght = products.length;
     console.log(arlenght);
 
+
 for (let i=0; i<arlenght;  i++){
 
+    polnaya_stoim = products[i].price + polnaya_stoim;
+    return polnaya_stoim;
+}
+}
     
-}
-}
+getTotalPrice()
 
-//getTotalPrice()
+console.log(polnaya_stoim);
 
-console.log(products[arlenght][price]);
+
