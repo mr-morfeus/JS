@@ -28,26 +28,81 @@ const library = {
 // 5. getAvailableBooks() - показать доступные книги
 
 function borrowBook(bookId, readerName){
-
-    const i = bookId;
-    const readerNam = readerName;
-
- // return `Имя: ${user.name}, Возраст: ${user.age}, Почка: ${user.email}`
-//console.log(`В библиотеке книг: ${library.books.length}`);
-
-
-if(library.books[i].reader === null){
-
-    console.log(`Книга - ${library.books[i].title} в наличии`);
-
-    library.books[i].reader = readerName;
-    console.log(`Выдадим ее читателю - ${readerName}`);
-    console.log(`Книга выдана пользователю- ${library.books[i].reader}`);
-
-    }else{
-
-    console.log(`Книга выдана читателю ${library.books[i].reader}`);    
+    // Ищем книгу
+    let book = null;
+    for (let i = 0; i < library.books.length; i++) {
+        if (library.books[i].id === bookId) {
+            book = library.books[i];
+            break;
+        }
+    }
+    
+    // Если не нашли
+    if (book === null) {
+        console.log("Книга не найдена!");
+        return;
+    }
+    
+    // Твоя логика выдачи книги
+    if (book.reader === null) {
+        book.reader = readerName;
+        console.log(`Книга "${book.title}" выдана ${readerName}`);
+    } else {
+        console.log(`Книга уже у ${book.reader}`);
+    }
 }
+borrowBook(0, 'люся')
+borrowBook(1, 'Шлюся')
+//
+borrowBook(2, 'юся')
+borrowBook(3, 'ся')
+console.log(`---------------------------------------------------`);
+function returnBook(bookId){
+    let book = null;
+    
+    // 1. Ищем книгу
+    for (let i = 0; i < library.books.length; i++) { // ✅ i < length
+        if (library.books[i].id === bookId) {
+            book = library.books[i];
+            break;
+        }
+    }
+    
+    // 2. Проверяем результат ПОСЛЕ цикла
+    if (book === null) {
+        console.log("Книги с таким ID ненайдено!");
+        return;
+    }
+    
+    // 3. Возвращаем книгу
+    console.log(`Книгу вернул читатель ${book.reader}`);
+    book.reader = null;
+    book.isAvailable = true;
+    console.log(`Теперь ее читатель ${book.reader}`);
+    console.log(`А ее доступность ${book.isAvailable}`);
 }
-borrowBook(0, 'Шлюся')
-borrowBook(1, 'юся')
+
+returnBook(2);
+console.log(`---------------------------------------------------`);
+
+// 3. addBook(title, author, year) - добавить новую книгу
+
+function addBook(title, author, year){
+
+   let id = library.books.length + 1;
+   const isAvailable = true;
+   const reader = null;
+   library.books.push({id, title, author, year, isAvailable, reader});
+
+}
+
+addBook("Как посадить реп", "Репасявалев", "2025");
+
+addBook("Кареп", "Реплев", "2025");
+
+const lastBook = library.books[library.books.length - 1];
+console.log(lastBook.title); // "Как посадить реп" ✅
+console.log(lastBook.author); // "Репасявалев" ✅
+console.log(lastBook.isAvailable); // true ✅
+
+console.log(`---------------------------------------------------`);
