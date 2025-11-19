@@ -16,6 +16,14 @@ const library = {
             year: 2021,
             isAvailable: false,
             reader: "Анна"
+        },
+                {
+            id: 3, 
+            title: "React с нуля 2",
+            author: "Петр Петров",
+            year: 2021,
+            isAvailable: false,
+            reader: "Анна"
         }
     ]
 };
@@ -111,30 +119,103 @@ console.log(`------------------------------------------------`);
 
 function findBooksByAuthor(author){
 
+   let arr = [];
     // 1. Ищем книгу
     for (let i = 0; i < library.books.length; i++) { // ✅ i < length
         if (library.books[i].author === author) {
-            book = library.books[i];
-            console.log(`Книга с автором ${book.author} найдена`);
-        }else{
-        book = library.books[i]; 
-        console.log(`Книги с автором ${book.author} у нас нет`);            
+            
+            arr.push(library.books[i]);
+            console.log(`Книги автора ${author} найдены ${library.books[i].title}`);
         }
     }
-    
-    /* 2. Проверяем результат ПОСЛЕ цикла
-    if (book === null) {
-        console.log("Книги с таким ID ненайдено!");
-        return;
+    // Проверяем результаты
+    if (arr.length === 0) {
+        console.log(`❌ Книги автора "${author}" не найдены`);
+    } else {
+        console.log(`📚 Всего найдено: ${arr.length} книг`);
     }
     
-    // 3. Возвращаем книгу
-    console.log(`Книгу вернул читатель ${book.reader}`);
-    book.reader = null;
-    book.isAvailable = true;
-    console.log(`Теперь ее читатель ${book.reader}`);
-    console.log(`А ее доступность ${book.isAvailable}`);*/
-
+    return arr;
 }
-findBooksByAuthor("Реплев");
+findBooksByAuthor("Петр Петров");
 findBooksByAuthor("Иван Иванов");
+findBooksByAuthor("ИваИванов");
+
+console.log(`------------------------------------------------`);
+
+// 5. getAvailableBooks() - показать доступные книги
+
+function getAvailableBooks(){
+
+    
+    for (let i = 0; i < library.books.length; i++) { // ✅ i < length
+    
+        if(library.books[i].isAvailable === true){
+
+        console.log(`${library.books[i].title}`);
+        }
+
+    }
+}
+getAvailableBooks()
+console.log(`------------------------------------------------`);
+// Напиши функцию findBooksByYear(year)
+// Возвращает массив книг выпущенных в указанном году
+
+function findBooksByYear(year){
+       let arr1 = [];
+    //BooksByYear = library.books.filter(library.books.year);
+
+    for (let i = 0; i < library.books.length; i++) { 
+    
+        if(library.books[i].year === year){
+
+            arr1.push(library.books[i]);
+            console.log(`${library.books[i].title}`);
+            console.log(`Длинна массива ${library.books.length}`);
+            console.log(`Весь массив ${arr1}`);
+        }
+
+    }
+return arr1;
+   // console.log(`Возвращает массив книг выпущенных в указанном году ${BooksByYear}`);
+}
+findBooksByYear(2021);
+
+console.log(`------------------------------------------------`);
+
+// Напиши функцию getLibraryStats()
+// Возвращает объект: { totalBooks: X, availableBooks: Y, borrowedBooks: Z }
+
+function getLibraryStats(){
+
+    let totalBooks = library.books.length;
+    let availableBooks = 0;
+    let borrowedBooks = 0;
+    
+    console.log(`Книг всего ${library.books.length}`);
+        for (let i = 0; i < library.books.length; i++) { 
+    
+            if(library.books[i].isAvailable === true){
+                availableBooks = availableBooks + 1;
+        
+            }
+            if(library.books[i].isAvailable === false){
+                borrowedBooks = borrowedBooks + 1;
+        
+            }
+    }
+    console.log(`Книг доступно ${availableBooks}`);
+    console.log(`Книг выдано ${borrowedBooks}`);
+
+    const obj = {
+            totalBooks: totalBooks,
+            availableBooks: availableBooks,
+            borrowedBooks: borrowedBooks
+
+    }
+    console.log(`Вывод объекта ${obj.totalBooks}`);
+    return obj
+}
+
+getLibraryStats()
