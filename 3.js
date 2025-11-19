@@ -105,4 +105,36 @@ console.log(lastBook.title); // "Как посадить реп" ✅
 console.log(lastBook.author); // "Репасявалев" ✅
 console.log(lastBook.isAvailable); // true ✅
 
-console.log(`---------------------------------------------------`);
+console.log(`------------------------------------------------`);
+
+//findBooksByAuthor(author) - найти книги автора
+
+function findBooksByAuthor(author){
+
+    // 1. Ищем книгу
+    for (let i = 0; i < library.books.length; i++) { // ✅ i < length
+        if (library.books[i].author === author) {
+            book = library.books[i];
+            console.log(`Книга с автором ${book.author} найдена`);
+        }else{
+        book = library.books[i]; 
+        console.log(`Книги с автором ${book.author} у нас нет`);            
+        }
+    }
+    
+    /* 2. Проверяем результат ПОСЛЕ цикла
+    if (book === null) {
+        console.log("Книги с таким ID ненайдено!");
+        return;
+    }
+    
+    // 3. Возвращаем книгу
+    console.log(`Книгу вернул читатель ${book.reader}`);
+    book.reader = null;
+    book.isAvailable = true;
+    console.log(`Теперь ее читатель ${book.reader}`);
+    console.log(`А ее доступность ${book.isAvailable}`);*/
+
+}
+findBooksByAuthor("Реплев");
+findBooksByAuthor("Иван Иванов");
