@@ -23,7 +23,7 @@ const library = {
             author: "Петр Петров",
             year: 2021,
             isAvailable: false,
-            reader: "Анна"
+            reader: "АЯа"
         }
     ]
 };
@@ -219,3 +219,15 @@ function getLibraryStats(){
 }
 
 getLibraryStats()
+console.log(`------------------------------------------------`);
+
+const readers = [
+    { id: 1, name: "Анна", borrowedBooks: [1, 2] },
+    { id: 2, name: "Петр", borrowedBooks: [] },
+    { id: 3, name: "Мария", borrowedBooks: [3] }
+];
+
+// Функции:
+// 1. getReaderBooks(readerId) - возвращает массив книг читателя
+// 2. findReadersWithBooks() - возвращает читателей у которых есть книги
+// 3. getMostActiveReader() - возвращает читателя с наибольшим количеством книг
