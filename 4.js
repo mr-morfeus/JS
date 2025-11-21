@@ -29,6 +29,13 @@ const gameStore = {
             balance: 5000,
             wishlist: [1, 3],
             purchased: [2]
+        },
+        {
+            id: 2,
+            name: "Дипсихй",
+            balance: 300,
+            wishlist: [1],
+            purchased: [0]
         }
     ]
 };
@@ -126,6 +133,34 @@ function addgame(title, price, genres, platform, rating, inStock, features){
 
 }
 addgame("Дальнобойщики", 5999, "Гонки на грузовиках", "PC", "9,9", true, "")
-
-
 games_vision()
+
+/*
+    customers: [
+        {
+            id: 1,
+            name: "Алексей",
+            balance: 5000,
+            wishlist: [1, 3],
+            purchased: [2]
+        }
+    ]
+*/
+function showWishlist(customerId) {
+    // Найти покупателя
+    // Найти игры по ID из wishlist
+    // Вывести список
+   // gameStore.purchased.length
+
+const pokupatel = gameStore.customers.filter(customer => 
+    customer.id === customerId
+);
+    console.log("Покупатель ", pokupatel[0].name);
+    if(pokupatel.length > 0){
+        pokupatel.forEach(wishlist =>{
+            console.log("wishlist", wishlist);
+        })
+    }
+
+}
+showWishlist(1);
