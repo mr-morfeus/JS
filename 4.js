@@ -28,14 +28,14 @@ const gameStore = {
             name: "Алексей",
             balance: 5000,
             wishlist: [1, 3],
-            purchased: [2]
+            purchased: [2, 1]
         },
         {
             id: 2,
             name: "Дипсихй",
             balance: 300,
             wishlist: [1],
-            purchased: [0]
+            purchased: []
         }
     ]
 };
@@ -142,7 +142,7 @@ games_vision()
             name: "Алексей",
             balance: 5000,
             wishlist: [1, 3],
-            purchased: [2]
+            purchased: [2,1]
         }
     ]
 */
@@ -150,17 +150,62 @@ function showWishlist(customerId) {
     // Найти покупателя
     // Найти игры по ID из wishlist
     // Вывести список
-   // gameStore.purchased.length
 
+let name_game_wish = [];
 const pokupatel = gameStore.customers.filter(customer => 
     customer.id === customerId
 );
-    console.log("Покупатель ", pokupatel[0].name);
-    if(pokupatel.length > 0){
-        pokupatel.forEach(wishlist =>{
-            console.log("wishlist", wishlist);
-        })
+if(pokupatel.length > 0){
+    const customer = pokupatel[0]; // берем первого покупателя
+    console.log("Покупатель ", customer.name);
+    
+    customer.wishlist.forEach(gameId => { // обращаемся к wishlist покупателя
+        console.log("ID игры в вишлисте:", gameId);
+            // Находим игру по ID
+    const game = gameStore.games.find(game => game.id === gameId);
+    
+    // Если игра найдена - добавляем в массив
+    if (game) {
+        name_game_wish.push(game);
+       // console.log("Добавлена игра:", game.title);
     }
+  
+});
+}
+    name_game_wish.forEach(gameId => { // список обьектов с играми
+    console.log("Название:", gameId.title);
+});
 
 }
+
 showWishlist(1);
+console.log("2. Показать купленные игры");
+function showPurchasedGames(customerId) {
+    // Найти покупателя  
+    // Найти игры по ID из purchased
+    // Вывести список
+    //вывожу всех клиентов
+    let id = 0;
+    console.log("Все клиенты:"); 
+    const customerall = gameStore.customers.forEach(customerall => {
+    console.log("все id игр ", gameStore.customers[id].purchased);
+        if (gameStore.customers[id].purchased.length > 0){
+            console.log(`Клиент - ${customerall.name} - Он покупатель`);
+            let pokupki = gameStore.customers[id].purchased; //id покупок
+            //console.log("Игры", gameStore.games.find(game => game.id === pokupki[id]));
+            //console.log("sdfffff", pokupki[1])
+            pokupki.forEach(game => {
+           console.log("Игрыы",gameStore.games.find(game => game.id === pokupki[id]).title); 
+        })
+    }else{
+        console.log(`Клиент - ${customerall.name} - Он не покупатель`);         
+    }
+    id++;
+    });
+    const pokupatel = gameStore.customers.find(customer => customer.id === customerId);
+    console.log("Выбран клиент:", pokupatel.name);
+    
+
+
+}
+showPurchasedGames(2)
