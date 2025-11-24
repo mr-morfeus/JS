@@ -155,6 +155,7 @@ let name_game_wish = [];
 const pokupatel = gameStore.customers.filter(customer => 
     customer.id === customerId
 );
+<<<<<<< HEAD
 if(pokupatel.length > 0){
     const customer = pokupatel[0]; // берем первого покупателя
     console.log("Покупатель ", customer.name);
@@ -168,6 +169,13 @@ if(pokupatel.length > 0){
     if (game) {
         name_game_wish.push(game);
        // console.log("Добавлена игра:", game.title);
+=======
+    console.log("Покупатель ", pokupatel[0].name);
+    if(pokupatel.length > 0){
+        pokupatel.forEach(custom =>{
+            console.log("wishlist", custom.wishlist);
+        })
+>>>>>>> ac237e1cea0088c3a35a8341b4c7922c2c0f150c
     }
   
 });
