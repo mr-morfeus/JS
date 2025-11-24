@@ -66,3 +66,7 @@ let words1 = word.reduce((res, wrds) => {
 }, 0);
 
 console.log("Длина самого длинного слова:", words1); // 9
+
+const numbers12 = [10, 20, 30, 40, 50];
+// Найди сумму всех чисел используя reduce
+console.log("Найди сумму всех чисел используя reduce - ", numbers12.reduce((acc, value) => acc + value, 0));
