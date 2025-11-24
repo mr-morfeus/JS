@@ -157,8 +157,8 @@ const pokupatel = gameStore.customers.filter(customer =>
 );
     console.log("Покупатель ", pokupatel[0].name);
     if(pokupatel.length > 0){
-        pokupatel.forEach(wishlist =>{
-            console.log("wishlist", wishlist);
+        pokupatel.forEach(custom =>{
+            console.log("wishlist", custom.wishlist);
         })
     }
 
