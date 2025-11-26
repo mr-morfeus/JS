@@ -1,88 +1,86 @@
-
-const fruits = ["apple", "banana", "apple", "orange", "banana", "apple"];
-
-const fruitCount = fruits.reduce((acc, fruit) => {
-    // Шаг 1: Проверяем, есть ли уже такой фрукт в аккумуляторе
-    if (acc[fruit]) {
-        // Если есть - увеличиваем счетчик на 1
-        acc[fruit] += 1;
-    } else {
-        // Если нет - создаем новый ключ со значением 1
-        acc[fruit] = 1;
-    }
-    
-    // Возвращаем обновленный аккумулятор
-    return acc;
-}, {}); // Начальное значение - пустой объект
-
-console.log("Длина самого длинного слова:", words1); // 9
-
-const numbers12 = [10, 20, 30, 40, 50];
-// Найди сумму всех чисел используя reduce
-console.log("Найди сумму всех чисел используя reduce - ", numbers12.reduce((acc, value) => acc + value, 0));
-
 const products = [
-  { name: "iPhone", category: "electronics" },
-  { name: "MacBook", category: "electronics" },
-  { name: "Хлеб", category: "food" },
-  { name: "Молоко", category: "food" },
-  { name: "Футболка", category: "clothes" }
+  { name: "iPhone", category: "electronics", price: 1000 },
+  { name: "MacBook", category: "electronics", price: 2000 },
+  { name: "Shirt", category: "clothing", price: 50 },
+  { name: "Shoes", category: "clothing", price: 100 }
 ];
-// Сгруппируй товары по категориям
-// Результат: { electronics: ["iPhone", "MacBook"], food: ["Хлеб", "Молоко"], clothes: ["Футболка"] }
 
-let group_tovar = products.reduce((acc, element) => {
-    if(!acc[element.category]){
-        acc[element.category] = [];
+const group = products.reduce((acc, value, index) => {
+
+    if(!acc[value.category]){
+        acc[value.category] = [];
+        console.log("Если нет категории", index)
     }
-        acc[element.category].push(element.name);
-        return acc;
-    
-
-},{})
-console.log("товары по категориям", group_tovar);
-
-const fruits = ["apple", "banana", "apple", "orange", "banana", "apple"];
-// Посчитай количество каждого фрукта
-// Результат: { apple: 3, banana: 2, orange: 1 }
-
-let result = fruits.reduce((acc, element) => {
-    if(acc[element]){
-        //acc[element.category] = [];
-       /* console.log("acc:", acc);
-        console.log("фрукт:", element);*/
-        acc[element] += 1;
-    } else{
-        acc[element] = 1;
-    }
-    return acc;
-},{});
-        console.log("result", result);
-const purchases = [
-  { product: "iPhone", count: 15 },
-  { product: "Samsung", count: 12 },
-   { product: "Xiao", count: 44 },
-  { product: "iPhone", count: 8 },
-  { product: "Xiaomi", count: 20 }
-];
-const count_best = purchases.reduce((acc, el) => {
-    if(acc === el.product){
-        console.log("первая", acc);
-    }
-    
-},{})
-console.log("count_best:", count_best);
-// Найди товар с наибольшим общим количеством покупок
-/*
-const count_best = purchases.reduce((acc, el) => {
-    if(acc > el.count){
-            console.log("acc", el.count);
+    acc[value.category].push(value);
     return acc
+},{});
+console.log("group", group)
 
-}else{
-    console.log("acc-else", el.count);
-    return el.count
+const users = [
+  { id: 1, name: "Alice", age: 25 },
+  { id: 2, name: "Bob", age: 30 },
+  { id: 3, name: "Charlie", age: 35 }
+];
 
-}
-},0)
-console.log("count_best:", count_best); */
+let mas = users.reduce((acc, val) =>{
+    let id = val.id;
+    let name = val.name;
+   /* console.log("id", id);
+    console.log("name", name);*/
+    acc[id] = name;
+    return acc
+},{})
+    console.log("mas", mas);
+// Задание: посчитай общую выручку по каждому продукту
+    const sales = [
+  { product: "iPhone", price: 1000, quantity: 2 },
+  { product: "Samsung", price: 800, quantity: 3 },
+  { product: "iPhone", price: 1000, quantity: 1 },
+  { product: "Xiaomi", price: 500, quantity: 4 }
+];
+
+let obsh = sales.reduce((acc, cena) => {
+console.log("ac456[cena.product]", cena.product );
+    if(!acc[cena.product]){
+        acc[cena.product] = 0;
+        console.log("Создаю запись для", cena.product, "=", acc[cena.product]);
+    }
+    acc[cena.product] += cena.price*cena.quantity;
+    console.log("a[", acc[cena.product]);
+    return acc
+},{})
+console.log("obsh", obsh);
+
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+// Найди сумму только четных чисел
+const sumEven = numbers.reduce((acc, num) => {
+  if(num % 2 === 0){
+    acc += num
+  }
+  return acc
+}, 0);
+console.log("sumEven", sumEven);
+
+const texts = ["short", "medium text", "this is the longest text", "tiny"];
+// Найди самую длинную строку
+const longest = texts.reduce((acc, text) => {
+    if (text.length > acc.length){
+        return text
+    }
+    return acc
+ // console.log("234234", text.length);
+  
+}, "");
+
+console.log(longest); // "this is the longest text"
+
+const numbers = [5, -2, 10, -8, 3, -1, 7];
+// Посчитай количество положительных чисел
+const positiveCount = numbers.reduce((acc, num) => {
+  // твой код здесь
+  if(num >0){
+    acc 
+  }
+}, 0);
+
+console.log(positiveCount); // 4 (5, 10, 3, 7)
