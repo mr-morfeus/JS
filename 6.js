@@ -15,9 +15,6 @@ const fruitCount = fruits.reduce((acc, fruit) => {
     return acc;
 }, {}); // Начальное значение - пустой объект
 
-<<<<<<< HEAD
-console.log(fruitCount); // { apple: 3, banana: 2, orange: 1 }
-=======
 console.log("Длина самого длинного слова:", words1); // 9
 
 const numbers12 = [10, 20, 30, 40, 50];
@@ -89,4 +86,3 @@ const count_best = purchases.reduce((acc, el) => {
 }
 },0)
 console.log("count_best:", count_best); */
->>>>>>> 373353b336038022ab9f4e4f671f7a120b95e777
