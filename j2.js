@@ -109,3 +109,53 @@ console.log(groupByCategory(items));
 //   'Фрукты': ['Яблоки', 'Банан'],
 //   'Овощи': ['Морковь', 'Картофель']
 // }
+
+// Напишите функцию, которая анализирует строку и возвращает статистику
+function analyzeString(str) {
+  // верните объект с:
+  // - количеством символов
+  // - количеством слов
+  // - количеством предложений
+  let simvolov = str.length;
+  console.log("simvolov",simvolov);
+  let slov = str.split(" ");
+  console.log("slov",slov.length);
+let predlozhenii = str.split(/[?.!]/);
+
+predlozhenii.forEach(element => {
+
+  if (element === ""){
+    predlozhenii.pop();
+    
+  }
+});
+  console.log("predloz666henii",predlozhenii.length);
+
+}
+
+console.log(analyzeString("Привет! Как дела? Все хорошо."));
+// Должно вернуть: { symbols: 28, words: 5, sentences: 3 }
+
+// Напишите функцию, которая находит все повторяющиеся элементы в массиве
+function findDuplicates(arr) {
+  let mas = [];
+  for(let i = 0; i<arr.length; i++){
+    //console.log("i",i);
+    let j = i+1;
+    for(j ; j<arr.length; j++){
+     // console.log("Сравниваю j и i", arr[i],"и",arr[j]);
+      if(arr[i] === arr[j]){
+        mas.push(arr[i]);
+       // console.log("if сработал ", arr[i],"и",arr[j]);
+    }
+    //console.log("Переменначя ", arr[i],"и",arr[j]);
+    }
+  }
+  console.log("jmas",mas);
+  return mas
+}
+
+console.log(findDuplicates([1, 2, 3, 2, 4, 5, 3, 6])); 
+// Должно вернуть [2, 3]
+console.log(findDuplicates(['a', 'b', 'a', 'c', 'b']));
+// Должно вернуть ['a', 'b']
