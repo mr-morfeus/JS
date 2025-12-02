@@ -159,3 +159,89 @@ console.log(findDuplicates([1, 2, 3, 2, 4, 5, 3, 6]));
 // Должно вернуть [2, 3]
 console.log(findDuplicates(['a', 'b', 'a', 'c', 'b']));
 // Должно вернуть ['a', 'b']
+
+const students = [
+  { name: 'Алексей', grade: 85 },
+  { name: 'Мария', grade: 92 },
+  { name: 'Иван', grade: 78 },
+  { name: 'Ольга', grade: 95 }
+];
+
+// Напишите функцию, которая сортирует студентов по оценке (по убыванию)
+function sortStudents(students) {
+  let sort_mas = [...students];
+
+  for(let i = 0; i< sort_mas.length; i++){
+    let j = i+1;
+      for(j ; j < sort_mas.length; j++){
+        if(sort_mas[i].grade < sort_mas[j].grade){
+          let temp = sort_mas[i];
+          sort_mas[i] = sort_mas[j];
+          sort_mas[j] = temp;
+        
+       //console.log("sort_mas",sort_mas);
+      }
+    }
+
+  }
+  return sort_mas
+}
+
+console.log(sortStudents(students));
+// Должно вернуть массив, отсортированный по grade от большего к меньшему
+
+// Напишите функцию, которая проверяет, является ли строка палиндромом
+function isPalindrome(str) {
+      let ok = 0;
+ 
+      str = str.toLowerCase().replace(/\s/g, '');
+           let j = str.length-1;
+  for(let i = 0; i < str.length; i ++){
+
+          if(str[i] === str[j] && j>=0){
+            
+            ok++
+            j--
+            /*console.log(`str[i] - ${str[i]}`);
+            console.log(`str[j] - ${str[j]}`)*/
+      }else{
+        break;
+      }
+  }
+  if(ok === str.length){
+
+    console.log(`Строка полиндром - ${str}`)
+  }
+  return str
+}
+
+console.log(isPalindrome("топот")); // true
+console.log(isPalindrome("привет")); // false
+console.log(isPalindrome("А роза упала на лапу Азора")); // true
+
+// Напишите функцию, которая находит самую длинную последовательность 
+// одинаковых символов в строке и возвращает ее длину
+function longestSequence(str) {
+  let j = 0;
+  let current_length = 1;
+  let maxLength = 1;
+  //let res = [];
+  let vipolnilos = 0;
+  for(let i = 0; i < str.length; i ++){
+    j = i + 1;
+    if(str[i] === str[j]){       
+          current_length = current_length + 1;
+          
+      }else{
+        if(current_length > maxLength){
+            maxLength = current_length;
+          }
+          console.log("maxLength -", maxLength)
+          current_length = 1;
+      }
+  }  
+  return maxLength;
+}
+
+console.log(longestSequence("аабббввввг")); // 4 (вввв)
+console.log(longestSequence("abcde")); // 1
