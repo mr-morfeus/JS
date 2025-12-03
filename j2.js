@@ -371,18 +371,33 @@ const slowSquare = (x) => {
 };
 
 const memoizedSquare = memoize(slowSquare);
-
+/*
 console.log(memoizedSquare(5)); // Вычисляю... [5] 25
 console.log(memoizedSquare(5)); // Из кэша: [5] 25
 console.log(memoizedSquare(3)); // Вычисляю... [3] 9
 console.log(memoizedSquare(3)); // Из кэша: [3] 9
 console.log(memoizedSquare(5)); // Из кэша: [5] 25
-console.log("-------------------------------------"); 
+console.log("-------------------------------------"); */
 // Напишите функцию groupBy(arr, key), которая группирует массив объектов
 // по значению указанного свойства
 
 function groupBy(arr, key) {
-  // Ваш код здесь
+  
+  const groupmap = new Map();
+  arr.forEach((user) => {
+   // console.log("user[key]", user[key]);
+    //console.log("user.age", user.age);
+    console.log("key-", key);
+    if(!groupmap.has(user[key])){
+     
+      groupmap.set(user[key], [user]);
+    }else{
+      groupmap.get(user[key]).push(user);
+      console.log("Индекс - ",groupmap.get(25));
+    }
+   
+  })
+  return groupmap
 }
 
 // Пример:
