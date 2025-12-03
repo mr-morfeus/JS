@@ -322,3 +322,78 @@ function getUnique(arr) {
 console.log(getUnique([1, 2, 2, 3, 4, 4, 4])); 
 console.log(getUnique([1, 2, 2, 3, 4, 4, 4])); 
 // Map { 1 => true, 2 => true, 3 => true, 4 => true }
+console.log("-------------------------------------"); 
+function mergeMaps(map1, map2) {
+  // Создаем новый Map на основе map1
+  const merged = new Map(map1);
+  
+  // Добавляем/перезаписываем значения из map2
+  // При совпадении ключей берется значение из map2
+  for (const [key, value] of map2) {
+    merged.set(key, value);
+  }
+  
+  return merged;
+}
+
+// Пример:
+const map1 = new Map([['a', 1], ['b', 2]]);
+const map2 = new Map([['b', 3], ['c', 4]]);
+console.log(mergeMaps(map1, map2));
+// Map { 'a' => 1, 'b' => 3, 'c' => 4 }
+console.log("-------------------------------------"); 
+// Создайте функцию memoize(fn), которая возвращает новую функцию,
+// кэширующую результаты вызовов оригинальной функции
+
+function memoize(fn) {
+  const cache = new Map();
+  
+  return function(...args) {
+    const key = JSON.stringify(args);
+    
+    if (cache.has(key)) {
+      console.log('Из кэша:', args);
+      return cache.get(key);
+    }
+    
+    console.log('Вычисляю...', args);
+    const result = fn(...args);
+    cache.set(key, result);
+    return result;
+  };
+}
+
+// Тестируем
+const slowSquare = (x) => {
+  // Имитируем "дорогую" операцию
+  for (let i = 0; i < 1000000000; i++) {} // Пауза
+  return x * x;
+};
+
+const memoizedSquare = memoize(slowSquare);
+
+console.log(memoizedSquare(5)); // Вычисляю... [5] 25
+console.log(memoizedSquare(5)); // Из кэша: [5] 25
+console.log(memoizedSquare(3)); // Вычисляю... [3] 9
+console.log(memoizedSquare(3)); // Из кэша: [3] 9
+console.log(memoizedSquare(5)); // Из кэша: [5] 25
+console.log("-------------------------------------"); 
+// Напишите функцию groupBy(arr, key), которая группирует массив объектов
+// по значению указанного свойства
+
+function groupBy(arr, key) {
+  // Ваш код здесь
+}
+
+// Пример:
+const users = [
+  { id: 1, name: 'Иван', age: 25 },
+  { id: 2, name: 'Анна', age: 25 },
+  { id: 3, name: 'Петр', age: 30 }
+];
+
+console.log(groupBy(users, 'age'));
+// Map {
+//   25 => [{id: 1, name: 'Иван', age: 25}, {id: 2, name: 'Анна', age: 25}],
+//   30 => [{id: 3, name: 'Петр', age: 30}]
+// }
