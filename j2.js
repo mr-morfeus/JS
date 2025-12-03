@@ -245,3 +245,80 @@ function longestSequence(str) {
 
 console.log(longestSequence("аабббввввг")); // 4 (вввв)
 console.log(longestSequence("abcde")); // 1
+console.log("-------------------------------------"); 
+const fruits = ['яблоко', 'банан', 'яблоко', 'апельсин', 'банан', 'яблоко'];
+const countMap = new Map();
+
+fruits.forEach(fruit => {
+  countMap.set(fruit, (countMap.get(fruit) || 0) + 1);
+console.log("---",countMap.get(fruit)); 
+});
+
+console.log(countMap.get('яблоко')); // 3
+//console.log(countMap.get('банан')); // 2
+console.log("-------------------------------------"); 
+const cache = new Map();
+
+function expensiveOperation(x) {
+  if (cache.has(x)) {
+    console.log('Из кэша:', x);
+    return cache.get(x);
+  }
+  
+  console.log('Вычисляем:', x);
+  const result = x * x; // "дорогая" операция
+  cache.set(x, result);
+  return result;
+}
+
+expensiveOperation(5); // Вычисляем: 5 → 25
+expensiveOperation(5); // Из кэша: 5 → 25
+console.log("-------------------------------------"); 
+// Напишите функцию countChars(str), которая возвращает Map,
+// где ключи - символы строки, значения - количество их вхождений
+
+function countChars(str) {
+  const mymap = new Map();
+  let sch = 1;
+    for(let i = 0; i < str.length; i++){
+      sch = 1;
+      if(mymap.has(str[i])){
+        sch = mymap.get(str[i]);
+        mymap.set(str[i], sch+1);
+        console.log("Есть в коллекции надо увеличить счетчик", mymap.size);
+
+      }else{
+        mymap.set(str[i], sch);
+        console.log("Еще нет в коллекции", mymap.size);
+      }
+    }
+    return mymap
+}
+
+// Пример:
+console.log(countChars("hello")); 
+// Map { 'h' => 1, 'e' => 1, 'l' => 2, 'o' => 1 }
+console.log("-------------------------------------"); 
+// Создайте функцию getUnique(arr), которая возвращает Map,
+// где ключи - элементы массива, значения - true для уникальных элементов
+
+function getUnique(arr) {
+  const uniq = new Map();
+
+  for (let char of arr){
+    if(uniq.has(char)){
+     // console.log("Есть в коллекции его не пишем", char);
+
+    }else{
+      uniq.set(char, true);
+     // console.log("Еще нет в коллекции его пишем", char);
+    }
+  }
+  return uniq;
+
+}
+
+// Пример:
+console.log(getUnique([1, 2, 2, 3, 4, 4, 4])); 
+console.log(getUnique([1, 2, 2, 3, 4, 4, 4])); 
+// Map { 1 => true, 2 => true, 3 => true, 4 => true }
