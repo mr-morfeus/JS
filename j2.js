@@ -412,3 +412,43 @@ console.log(groupBy(users, 'age'));
 //   25 => [{id: 1, name: 'Иван', age: 25}, {id: 2, name: 'Анна', age: 25}],
 //   30 => [{id: 3, name: 'Петр', age: 30}]
 // }
+console.log("-------------------------------------"); 
+/**
+ * Напишите функцию wordFrequency(text), которая возвращает Map,
+ * где ключи - слова в нижнем регистре, значения - количество их вхождений.
+ * Игнорируйте знаки препинания.
+ */
+
+function wordFrequency(text) {
+  const upmap = new Map();
+  let clearstr = text.toLowerCase().replace(/[.,!?;:]/g, '');
+  //console.log("clearstr", clearstr);
+  const arr = clearstr.split(' ').filter(word => word !== '');
+  let key = 1;
+  arr.forEach((slovo) => {
+    
+    if(upmap.has(slovo)){
+        console.log("Этот элемент уже есть", slovo);
+      console.log("upmap1", upmap);
+      let zn = upmap.get(slovo);
+      zn++
+      upmap.set(slovo, zn);
+    }else{
+      //console.log("upmap.has(slovo)", upmap.has(slovo));
+      key = 1;
+      upmap.set(slovo, key);
+     // console.log("Добавил элемент", slovo);
+     // console.log("upmap", upmap);
+     // console.log("slovo", slovo);
+      //console.log("Индек34с - ",upmap.get(slovo));
+    }
+//key++
+
+  })
+     return upmap;
+}
+
+console.log(wordFrequency("Привет мир, привет все!"));
+// Map { 'привет' => 2, 'мир' => 1, 'все' => 1 }
+
+
