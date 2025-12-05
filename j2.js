@@ -450,5 +450,62 @@ function wordFrequency(text) {
 
 console.log(wordFrequency("Привет мир, привет все!"));
 // Map { 'привет' => 2, 'мир' => 1, 'все' => 1 }
+console.log("-------------------------------------"); 
 
+/**
+ * Напишите функцию findIntersection(arr1, arr2), которая возвращает Map,
+ * где ключи - общие элементы, значения - объект {count1: X, count2: Y}
+ * X - сколько раз элемент встречается в arr1
+ * Y - сколько раз элемент встречается в arr2
+ */
 
+function findIntersection(arr1, arr2) {
+  console.log('=== НАЧАЛО ===');
+  console.log('arr1:', arr1);
+  console.log('arr2:', arr2);
+  
+  const mymap = new Map();
+  
+  console.log('\n=== ПЕРВЫЙ ПРОХОД (arr1) ===');
+  arr1.forEach((znach_arr1, index) => {
+    console.log(`Элемент ${index}: ${znach_arr1}`);
+    
+    if (!mymap.has(znach_arr1)) {
+      console.log(`  Новый элемент! Устанавливаю: { count1: 1, count2: 0 }`);
+      mymap.set(znach_arr1, { count1: 1, count2: 0 });
+    } else {
+      const counts = mymap.get(znach_arr1);
+      counts.count1++;
+      console.log(`  Уже есть! Увеличиваю count1 до: ${counts.count1}`);
+    }
+  });
+  
+  console.log('\n=== ВТОРОЙ ПРОХОД (arr2) ===');
+  arr2.forEach((znach_arr2, index) => {
+    console.log(`Элемент ${index}: ${znach_arr2}`);
+    
+    if (mymap.has(znach_arr2)) {
+      const counts = mymap.get(znach_arr2);
+      counts.count2++;
+      console.log(`  Есть в первом массиве! Увеличиваю count2 до: ${counts.count2}`);
+    } else {
+      console.log(`  Нет в первом массиве - игнорирую`);
+    }
+  });
+  /*
+  console.log('\n=== ФИЛЬТРАЦИЯ ===');
+  const result = new Map();
+  for (let [key, value] of mymap) {
+    if (value.count2 > 0) {
+      console.log(`  Сохраняю ${key}:`, value);
+      result.set(key, value);
+    } else {
+      console.log(`  Удаляю ${key} (нет в arr2)`);
+    }
+  }
+  
+  console.log('\n=== РЕЗУЛЬТАТ ===');*/
+  return mymap;
+}
+
+console.log(findIntersection([1, 2, 2, 3], [2, 2, 3, 4]));
